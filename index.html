@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ukraine Rotary Wing Squadrons | Recruitment</title>
+
+  <style>
+    :root {
+      --primary: #154b79;
+      --accent: #e8ba39;
+      --text: #354657;
+      --border: #dce3e9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #eef1f4;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    .terminal-container {
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 12px 60px #15273715;
+    }
+
+    .masthead {
+      background: #111e2b;
+      color: white;
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      border-top: 5px solid var(--accent);
+    }
+
+    .unit-crest {
+      height: 78px;
+      width: 56px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .19em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #b4c2ce;
+    }
+
+    .brand-sub {
+      color: #bdc8d2;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .hero {
+      position: relative;
+      height: 440px;
+      background: #182c3f;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center 46%;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg, #0b182de8, #0b182d65 65%, #0b182d10
+      );
+    }
+
+    .hero-copy {
+      position: absolute;
+      z-index: 1;
+      left: 48px;
+      bottom: 46px;
+      max-width: 560px;
+      color: white;
+    }
+
+    .hero-copy .eyebrow { color: #f0c64e; }
+
+    h1 {
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.06;
+      letter-spacing: -.025em;
+      margin: 18px 0;
+    }
+
+    .hero-copy p {
+      color: #e1e8ef;
+      max-width: 440px;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    nav {
+      display: flex;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      gap: 28px;
+    }
+
+    .nav-btn {
+      background: none;
+      border: 0;
+      border-bottom: 3px solid transparent;
+      color: #526476;
+      padding: 22px 0;
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover { color: var(--primary); }
+
+    .nav-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    main {
+      padding: 44px 48px 48px;
+      min-height: 380px;
+    }
+
+    .tab-content { display: none; }
+
+    .tab-content.active-tab {
+      display: block;
+      animation: fadeIn .25s ease;
+    }
+
+    h2 {
+      font-size: 26px;
+      line-height: 1.3;
+      color: #152c41;
+      letter-spacing: -.025em;
+      margin: 0 0 22px;
+    }
+
+    p { margin: 0 0 18px; }
+    ul { padding-left: 21px; }
+    li { margin-bottom: 10px; }
+
+    .overview-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 42px;
+    }
+
+    .identity-card {
+      border: 1px solid var(--border);
+      background: #f6f8fa;
+      align-self: start;
+    }
+
+    .identity-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .identity-caption {
+      padding: 18px;
+      font-size: 13px;
+    }
+
+    .identity-caption strong {
+      display: block;
+      color: #152c41;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+
+    .role-section {
+      border: 1px solid var(--border);
+      padding: 26px;
+      margin-bottom: 22px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .role-title {
+      font-size: 19px;
+      line-height: 1.4;
+      font-weight: 700;
+      color: #18344e;
+      margin: 0 0 14px;
+    }
+
+    .role-image {
+      float: right;
+      width: 31%;
+      height: 220px;
+      object-fit: cover;
+      margin: 0 0 14px 26px;
+    }
+
+    .role-section:nth-of-type(2) .role-image {
+      object-position: center 35%;
+    }
+
+    .role-section p,
+    .role-section li {
+      font-size: 14px;
+    }
+
+    .protocol-layout,
+    .enlist-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 44px;
+    }
+
+    .side-photo {
+      width: 100%;
+      height: 390px;
+      object-fit: cover;
+    }
+
+    .photo-caption {
+      font-size: 12px;
+      color: #637689;
+      margin-top: 10px;
+    }
+
+    .protocol-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: protocol;
+    }
+
+    .protocol-list li {
+      counter-increment: protocol;
+      padding: 20px 20px 20px 62px;
+      background: #f4f7f9;
+      margin: 12px 0;
+      position: relative;
+      border-left: 3px solid var(--accent);
+    }
+
+    .protocol-list li::before {
+      content: "0" counter(protocol);
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .form-group { margin-bottom: 22px; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #243c53;
+      margin-bottom: 8px;
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      background: #f7f9fb;
+      border: 1px solid #cbd5df;
+      border-radius: 2px;
+      color: #172d42;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 160px;
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      color: white;
+      border: 0;
+      padding: 15px 23px;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    .submit-btn:hover { background: #103958; }
+
+    #submission-status {
+      font-size: 12px;
+      color: #637689;
+      margin-top: 14px;
+    }
+
+    .footer {
+      padding: 22px 48px;
+      border-top: 1px solid var(--border);
+      background: #f7f9fb;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 11px;
+      color: #697b8c;
+      letter-spacing: .04em;
+    }
+
+    .footer strong { color: #28435d; }
+
+    .flag-line {
+      display: flex;
+      width: 44px;
+      height: 4px;
+      margin-bottom: 12px;
+    }
+
+    .flag-line::before,
+    .flag-line::after {
+      content: "";
+      width: 50%;
+      background: #2274b4;
+    }
+
+    .flag-line::after { background: var(--accent); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 760px) {
+      .masthead { padding: 20px 22px; }
+      .brand-name { font-size: 17px; }
+      .hero { height: 390px; }
+
+      .hero-copy {
+        left: 24px;
+        right: 24px;
+        bottom: 32px;
+      }
+
+      .hero::after {
+        background: linear-gradient(0deg, #0b182df2, #0b182d33);
+      }
+
+      nav {
+        padding: 0 22px;
+        gap: 20px;
+        overflow-x: auto;
+      }
+
+      .nav-btn {
+        font-size: 12px;
+        padding: 18px 0;
+      }
+
+      main { padding: 30px 22px; }
+
+      .overview-layout,
+      .protocol-layout,
+      .enlist-layout {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .identity-card { max-width: 400px; }
+      .role-section { padding: 20px; }
+
+      .role-image {
+        float: none;
+        width: 100%;
+        height: 230px;
+        margin: 0 0 20px;
+      }
+
+      .side-photo {
+        height: 320px;
+        object-position: center 35%;
+      }
+
+      .footer {
+        padding: 20px 22px;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      h2 { font-size: 23px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .tab-content.active-tab { animation: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="terminal-container">
+    <header>
+      <div class="masthead">
+        <img
+          class="unit-crest"
+          src="images/IMG_3321.png"
+          alt="Brody aviation insignia"
+        >
+        <div>
+          <div class="eyebrow">Aviation • Personnel • Operations</div>
+          <div class="brand-name">Ukraine Rotary Wing Squadrons</div>
+          <div class="brand-sub">Squadron recruitment portal</div>
+        </div>
+      </div>
+
+      <div class="hero">
+        <img
+          class="hero-image"
+          src="images/IMG_3319.jpeg"
+          alt="Ukrainian helicopter and crew member at a field landing site"
+        >
+        <div class="hero-copy">
+          <div class="eyebrow">Ukrainian rotary aviation</div>
+          <h1>Precision in flight.<br>Strength in teamwork.</h1>
+          <p>Flight command, enlisted aircrew, and aviation support. Explore the squadron and find your role.</p>
+        </div>
+      </div>
+    </header>
+
+    <nav aria-label="Main navigation">
+      <button class="nav-btn active" type="button" data-tab="home">
+        1.0 Overview
+      </button>
+      <button class="nav-btn" type="button" data-tab="divisions">
+        2.0 Divisions
+      </button>
+      <button class="nav-btn" type="button" data-tab="requirements">
+        3.0 Protocol
+      </button>
+      <button class="nav-btn" type="button" data-tab="apply">
+        4.0 Enlist
+      </button>
+    </nav>
+
+    <main>
+      <!-- OVERVIEW -->
+      <section id="home" class="tab-content active-tab">
+        <div class="flag-line" aria-hidden="true"></div>
+        <h2>Command dispatch</h2>
+
+        <div class="overview-layout">
+          <div>
+            <p>Welcome to the central communications network for the Ukraine Rotary Wing Squadrons. This terminal serves as our primary node for organizational planning, tactical training scheduling, and technical personnel intake operations.</p>
+
+            <p>Our group is structured strictly around disciplined coordination, strategic flight execution, and specialized technical support frameworks. We operate with an immersive focus on modern Ukrainian rotary aviation networks and mechanized infrastructure systems to establish maximum efficiency in our deployments.</p>
+
+            <p>Review the required active duty roles, check our service protocols, or submit an intake application file using the interface menus above.</p>
+          </div>
+
+          <aside class="identity-card">
+            <img
+              src="images/IMG_3322.jpeg"
+              alt="Aviation brigade insignia on the Ukrainian flag"
+              loading="lazy"
+            >
+            <div class="identity-caption">
+              <strong>Squadron identity</strong>
+              Ukrainian rotary aviation, aircrew, and support.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- DIVISIONS -->
+      <section id="divisions" class="tab-content">
+        <div class="flag-line" aria-hidden="true"></div>
+        <h2>Sector assignments</h2>
+
+        <div class="role-section">
+          <img
+            class="role-image"
+            src="images/IMG_3319.jpeg"
+            alt="Helicopter at a field landing site"
+            loading="lazy"
+          >
+          <h3 class="role-title">Flight Command (Mi-8 Pilots)</h3>
+          <p>The primary tactical insertion and logistics delivery arm of the squadron. Responsible for operating the group's central transport fleet.</p>
+          <ul>
+            <li><strong>Responsibilities:</strong> Execute precision low-altitude flight paths, hot-zone troop insertions, and synchronized material resupply missions under heavy observation.</li>
+            <li><strong>Requirements:</strong> Flawless flight mechanics control, steady landing profiles, and absolute mastery of multi-channel command net coordination.</li>
+          </ul>
+        </div>
+
+        <div class="role-section">
+          <img
+            class="role-image"
+            src="images/IMG_3318.jpeg"
+            alt="Aircrew member standing beside a Ukrainian helicopter"
+            loading="lazy"
+          >
+          <h3 class="role-title">Enlisted Flight Crew (Crew Chiefs &amp; Aerial Observers)</h3>
+          <p>Crucial flight deck positions tasked with airframe oversight, target tracking, and internal cargo management. Experience utilizing USMC or similar maritime air-wing structural frameworks is highly valued.</p>
+          <ul>
+            <li><strong>Crew Chiefs &amp; Aerial Observers:</strong> In charge of in-flight mechanics, landing clearing commands for the pilot, door-gun suppression coordination, and handling hot logistical loading.</li>
+          </ul>
+        </div>
+
+        <div class="role-section">
+          <img
+            class="role-image"
+            src="images/IMG_3320.jpeg"
+            alt="Ground crew member working alongside a Ukrainian helicopter"
+            loading="lazy"
+          >
+          <h3 class="role-title">Aviation Maintenance Crew (Airframers, Powerplant, &amp; Avionics)</h3>
+          <p>The technical core tasked with the structural maintenance, system configurations, and back-end logistical health of the squadron's fleet.</p>
+          <ul>
+            <li><strong>Experienced Airframers:</strong> Specialized in structural integrity, vehicle repair priority routing, and resource management at forward outposts.</li>
+            <li><strong>Powerplant Mechanics:</strong> Dedicated to turbine/engine operational maintenance, fuel network logistics, and heavy deployment construction efficiency.</li>
+            <li><strong>Avionics Men:</strong> Tasked with communication array monitoring, navigation planning support, and coordinate defense perimeter hardware setups.</li>
+          </ul>
+        </div>
+
+        <div class="role-section">
+          <img
+            class="role-image"
+            src="images/IMG_3317.webp"
+            alt="Personnel descending from a helicopter by rope"
+            loading="lazy"
+          >
+          <h3 class="role-title">Tactical Field Operations (Firearm Experience / Veterans)</h3>
+          <p>The frontline tactical detachment responsible for securing landing zones, managing defensive boundaries, and direct sector containment.</p>
+        </div>
+      </section>
+
+      <!-- PROTOCOL -->
+      <section id="requirements" class="tab-content">
+        <div class="flag-line" aria-hidden="true"></div>
+        <h2>Squadron protocols</h2>
+
+        <div class="protocol-layout">
+          <div>
+            <p>To retain structural security, all active personnel are held to rigid combat training parameters:</p>
+            <ul class="protocol-list">
+              <li>Active operational mic headset required for secure sub-net systems.</li>
+              <li>Presence mandatory for weekly tactical deployments and flight checkrides.</li>
+              <li>Adherence to flight mechanics, communication formats, and mission dispatch paths.</li>
+            </ul>
+          </div>
+
+          <aside>
+            <img
+              class="side-photo"
+              src="images/IMG_3317.webp"
+              alt="Helicopter rope descent training"
+              loading="lazy"
+            >
+            <p class="photo-caption">Coordination. Communication. Readiness.</p>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ENLIST -->
+      <section id="apply" class="tab-content">
+        <div class="flag-line" aria-hidden="true"></div>
+        <h2>Recruit intake manifest</h2>
+
+        <div class="enlist-layout">
+          <div>
+            <form id="enlist-form">
+              <div class="form-group">
+                <label for="operator-name">Callsign / Operator Name</label>
+                <input
+                  type="text"
+                  id="operator-name"
+                  name="operator_name"
+                  placeholder="e.g., GHOST-1"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="department">Preferred Department Position</label>
+                <select id="department" name="department" required>
+                  <option value="pilot">Flight Command (Pilot)</option>
+                  <option value="flight-crew">Enlisted Flight Crew</option>
+                  <option value="logistics-support">Logistics / Support Team</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="military-experience">Military Experience</label>
+                <textarea
+                  id="military-experience"
+                  name="military_experience"
+                  rows="6"
+                  placeholder="Detail any military experience..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="submit-btn">
+                TRANSMIT CREDENTIALS
+              </button>
+
+              <p id="submission-status" role="status" aria-live="polite">
+                Application submissions are not yet enabled.
+              </p>
+            </form>
+          </div>
+
+          <aside>
+            <img
+              class="side-photo"
+              src="images/IMG_3320.jpeg"
+              alt="Aviation ground crew alongside a helicopter"
+              loading="lazy"
+            >
+            <p class="photo-caption">Aviation personnel and support.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <strong>UKRAINE ROTARY WING SQUADRONS</strong>
+      <span>Milsim community recruitment portal</span>
+    </footer>
+  </div>
+
+  <script>
+    const tabButtons = document.querySelectorAll('.nav-btn[data-tab]');
+    const tabPanels = document.querySelectorAll('.tab-content');
+
+    function switchTab(tabId) {
+      const target = document.getElementById(tabId);
+
+      if (!target || !target.classList.contains('tab-content')) {
+        return;
+      }
+
+      tabPanels.forEach(panel => {
+        panel.classList.toggle('active-tab', panel === target);
+      });
+
+      tabButtons.forEach(button => {
+        const active = button.dataset.tab === tabId;
+
+        button.classList.toggle('active', active);
+
+        if (active) {
+          button.setAttribute('aria-current', 'page');
+        } else {
+          button.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    tabButtons.forEach(button => {
+      button.setAttribute('aria-controls', button.dataset.tab);
+      button.addEventListener('click', () => {
+        switchTab(button.dataset.tab);
+      });
+    });
+
+    switchTab('home');
+
+    document.getElementById('enlist-form').addEventListener('submit', event => {
+      event.preventDefault();
+
+      document.getElementById('submission-status').textContent =
+        'Your application has not been sent. Application submissions are not yet enabled.';
+    });
+  </script>
+</body>
+</html>
